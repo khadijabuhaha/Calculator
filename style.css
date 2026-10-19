@@ -1,0 +1,72 @@
+* { box-sizing: border-box; margin: 0; font-family: system-ui, sans-serif; }
+
+/* Pura page: gradient background */
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  /* Safed se halka neela gradient + 2 neeli roshni (glass ko blur karne ke liye kuch chahiye) */
+  background:
+    radial-gradient(circle at 20% 20%, #60a5fa 0, transparent 40%),
+    radial-gradient(circle at 80% 80%, #38bdf8 0, transparent 40%),
+    linear-gradient(135deg, #ffffff, #e0f2fe);
+  padding: env(safe-area-inset-top, 0px) 16px env(safe-area-inset-bottom, 0px);
+}
+
+/* Glass card: semi-transparent + blur = glass effect */
+.calculator {
+  width: 100%;
+  max-width: 340px;
+  padding: 20px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 20px 50px rgba(37, 99, 235, 0.25);
+}
+
+/* Screen jahan number dikhta hai */
+/* Screen: sirf ek box, light blue shine border */
+.screen { display: grid; gap: 10px; margin-bottom: 16px; }
+
+#display {
+  background: rgba(255, 255, 255, 0.75);
+  border: 2px solid #93c5fd;
+  border-radius: 16px;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.7), inset 0 0 8px rgba(147, 197, 253, 0.6);
+  text-align: right;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+#display    { color: #000; font-size: 2.4rem; font-weight: 300; padding: 10px 14px; }
+
+/* Buttons 4 columns ki grid me */
+.buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+button {
+  height: 64px;
+  border: 2px solid #93c5fd;     /* light blue border */
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.75);
+  color: #1d4ed8;                /* AC, delete, % ka rang neela */
+  font-size: 1.3rem;
+  /* light blue shine (bahar ki glow + andar ki chamak) */
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.7), inset 0 0 8px rgba(147, 197, 253, 0.6);
+  cursor: pointer;
+  transition: transform 0.1s, background 0.2s;
+}
+/* Hover: button sirf thoda upar uthta hai, koi rang nahi badalta */
+button:hover  { transform: translateY(-3px); }
+button:active { transform: scale(0.92); }
+
+/* Shiny blue: upar se neeche gradient + andar halki safed chamak (inset shadow) */
+.op, .equals {
+  background: linear-gradient(180deg, #60a5fa, #2563eb);
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 6px 14px rgba(37, 99, 235, 0.4);
+}
+.zero   { grid-column: span 2; }
+
+/* Sirf numbers (0-9 aur .) ka font black */
+.num { color: #000; }
